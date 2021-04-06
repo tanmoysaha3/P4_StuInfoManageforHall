@@ -68,6 +68,8 @@ public class CreateHall extends AppCompatActivity {
                                 Map<String,Object> user = new HashMap<>();
                                 user.put("Hall_Name", hallName);
                                 user.put("Hall_Id", hallId);
+                                user.put("Hall_Admin","X");
+                                user.put("IsHallAdminAssigned","0");
 
                                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

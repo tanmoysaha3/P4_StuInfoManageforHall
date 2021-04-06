@@ -106,6 +106,8 @@ public class AdminRegister extends AppCompatActivity {
                         user.put("Email",email);
                         user.put("DocumentId", email.substring(0,email.indexOf("@")));
                         user.put("IsAdmin","0");
+                        user.put("AssignedHall","0");
+                        user.put("Role","X");
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
