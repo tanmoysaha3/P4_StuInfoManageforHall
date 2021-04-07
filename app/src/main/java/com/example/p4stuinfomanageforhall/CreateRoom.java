@@ -126,10 +126,19 @@ public class CreateRoom extends AppCompatActivity {
                 String floorNo=mFloorNoRoomSpinner.getSelectedItem().toString();
                 for(int i=1; i<=Integer.parseInt(mCreatedRoomsNumber.getText().toString());i++){
                     String x=String.valueOf(i+count);
+                    String y;
+                    if(Integer.parseInt(x)<10){
+                        y="0"+x;
+                    }
+                    else {
+                        y=x;
+                    }
+                    String z=mFloorNoRoomSpinner.getSelectedItem().toString()+y;
                     DocumentReference documentReference=fStore.collection("Halls").document(mHallIdRoomSpinner.getSelectedItem().toString())
-                            .collection("Floors").document(floorNo).collection("Rooms").document(x);
+                            .collection("Floors").document(floorNo).collection("Rooms").document(y);
                     Map<String,Object> user = new HashMap<>();
-                    user.put("Room_No", x);
+                    user.put("Room_No", y);
+                    user.put("Updated_Room_No",z);
 
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
