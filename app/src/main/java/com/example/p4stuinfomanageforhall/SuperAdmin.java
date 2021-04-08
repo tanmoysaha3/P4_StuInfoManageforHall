@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SuperAdmin extends AppCompatActivity {
 
-    Button mHallCreateButton, mFloorCreateButton, mRoomCreateButton, mHallAdminAssignButton;
+    Button mHallCreateButton, mFloorCreateButton, mRoomCreateButton, mHallAdminAssignButton, mDashboardButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class SuperAdmin extends AppCompatActivity {
         mFloorCreateButton=findViewById(R.id.floorCreateButton);
         mRoomCreateButton=findViewById(R.id.roomCreateButton);
         mHallAdminAssignButton=findViewById(R.id.hallAdminAssignButton);
+        mDashboardButton=findViewById(R.id.dashboardButton);
 
         mHallCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +51,14 @@ public class SuperAdmin extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),HallAdminAssign.class));
             }
         });
+
+        mDashboardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Dashboard.class));
+            }
+        });
+
     }
 
     public void logoutSuperAdmin(View view) {

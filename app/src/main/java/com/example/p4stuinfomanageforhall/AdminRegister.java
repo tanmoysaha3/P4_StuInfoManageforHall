@@ -114,13 +114,8 @@ public class AdminRegister extends AppCompatActivity {
                                 Log.d("TAG","onSuccess : user profile is created for " + documentID);
                             }
                         });
-
                         startActivity(new Intent(getApplicationContext(),VerifyEmail.class));
                         finish();
-                        /*Intent i = new Intent(getApplicationContext(), VerifyEmail.class);
-                        i.putExtra("DocumentId", documentID);
-                        startActivity(i);
-                        finish();*/
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

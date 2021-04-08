@@ -109,10 +109,11 @@ public class Register extends AppCompatActivity {
                         user.put("Department", dept);
                         user.put("Year", year);
                         user.put("IsAssigned", "0");
-                        user.put("Assigned_Seat", "X");
+                        user.put("Assigned_Seat", "0");
                         user.put("Hall_Id","0");
                         user.put("Floor_No","0");
                         user.put("Room_No","0");
+                        user.put("Unique_Seat_Id","X");
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
