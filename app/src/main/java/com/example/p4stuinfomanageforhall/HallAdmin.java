@@ -11,7 +11,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HallAdmin extends AppCompatActivity {
 
-    Button mSeatCreateButton, mOfficialAssignButton, mSeatAssignButton, mSeeEmptyStudentsButton;
+    Button mSeatCreateButton, mOfficialAssignButton, mSeatAssignButton, mSeeEmptyStudentsButton,
+            mSeeAssignedStudentsButton, mFilterStudentListButton, mSearchStudentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,9 @@ public class HallAdmin extends AppCompatActivity {
         mOfficialAssignButton=findViewById(R.id.officialAssignButton);
         mSeatAssignButton=findViewById(R.id.seatAssignButton);
         mSeeEmptyStudentsButton=findViewById(R.id.seeEmptyStudentsButton);
+        mSeeAssignedStudentsButton=findViewById(R.id.seeAssignedStudentsButton);
+        mFilterStudentListButton=findViewById(R.id.filterStudentListButton);
+        mSearchStudentButton=findViewById(R.id.searchStudentButton);
 
         mSeatCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +51,32 @@ public class HallAdmin extends AppCompatActivity {
         mSeeEmptyStudentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),SeeEmptyStudents.class));
+                Intent intent=new Intent(getApplicationContext(), SeeStudentList.class);
+                intent.putExtra("Value","0");
+                startActivity(intent);
+            }
+        });
+
+        mSeeAssignedStudentsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), SeeStudentList.class);
+                intent.putExtra("Value","1");
+                startActivity(intent);
+            }
+        });
+
+        mFilterStudentListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),FilterStudents.class));
+            }
+        });
+
+        mSearchStudentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),SearchStudent.class));
             }
         });
     }

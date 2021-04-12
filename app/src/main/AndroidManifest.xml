@@ -12,8 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.P4StuInfoManageforHall">
-        <activity android:name=".SeeStudentDetails"></activity>
-        <activity android:name=".SeeEmptyStudents" />
+        <activity android:name=".SearchStudent"></activity>
+        <activity android:name=".SeeFilteredStudents" />
+        <activity android:name=".FilterStudents" />
+        <activity android:name=".Official" />
+        <activity android:name=".SeeStudentDetails" />
+        <activity android:name=".SeeStudentList" />
         <activity android:name=".Dashboard" />
         <activity android:name=".OfficialAssign" />
         <activity android:name=".SeatAssign" />

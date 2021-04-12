@@ -125,9 +125,13 @@ public class SeatAssign extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         String selectedItem = parent.getItemAtPosition(position).toString();
-                        CollectionReference seatRef = fStore.collection("Halls").document(hallId)
+                        Query seatRef=fStore.collection("Halls").document(hallId)
                                 .collection("Floors").document(mFloorNoSeatAssignSpinner.getSelectedItem().toString())
-                                .collection("Rooms").document(selectedItem).collection("Seats");
+                                .collection("Rooms").document(selectedItem).collection("Seats")
+                                .whereEqualTo("IsAssigned","0");
+                        /*CollectionReference seatRef = fStore.collection("Halls").document(hallId)
+                                .collection("Floors").document(mFloorNoSeatAssignSpinner.getSelectedItem().toString())
+                                .collection("Rooms").document(selectedItem).collection("Seats");*/
                         List<String> seats = new ArrayList<>();
                         ArrayAdapter<String> seatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, seats);
                         seatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -232,7 +236,7 @@ public class SeatAssign extends AppCompatActivity {
                         user2.put("Unique_Seat_Id",uniqueSeatId);
                         user2.put("Hall_Id",hallId);
                         user2.put("Floor_No",mFloorNoSeatAssignSpinner.getSelectedItem().toString());
-                        user2.put("Room_No",mFloorNoSeatAssignSpinner.getSelectedItem().toString());
+                        user2.put("Room_No",mRoomNoSeatAssignSpinner.getSelectedItem().toString());
                         user2.put("Assigned_Seat",mSeatNoSeatAssignSpinner.getSelectedItem().toString());
 
                         documentReference2.update(user2).addOnSuccessListener(new OnSuccessListener<Void>() {

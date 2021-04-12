@@ -2,15 +2,12 @@ package com.example.p4stuinfomanageforhall;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -20,27 +17,25 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class SeeEmptyStudents extends AppCompatActivity implements FirestoreAdapterStudent.OnListItemClick {
+public class SeeStudentList extends AppCompatActivity implements FirestoreAdapterStudent.OnListItemClick {
 
     FirebaseFirestore firebaseFirestore;
     RecyclerView mEmptyStudentsRecView;
     FirestoreAdapterStudent adapter;
-    String seatId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_see_empty_students);
+        setContentView(R.layout.activity_see_student_list);
 
-        //Intent data = getIntent();
-        //seatId = data.getStringExtra("Unique_Seat_Id");
-        //String studentId = data.getStringExtra("Student Id");
+        Intent data = getIntent();
+        String value = data.getStringExtra("Value");
 
         firebaseFirestore=FirebaseFirestore.getInstance();
         mEmptyStudentsRecView=findViewById(R.id.emptyStudentsRecView);
 
         //Query
-        Query query=firebaseFirestore.collection("Verified Students").whereEqualTo("IsAssigned","0");
+        Query query=firebaseFirestore.collection("Verified Students").whereEqualTo("IsAssigned",value);
 
         PagedList.Config config = new PagedList.Config.Builder()
                 .setInitialLoadSizeHint(10)
@@ -63,17 +58,8 @@ public class SeeEmptyStudents extends AppCompatActivity implements FirestoreAdap
                 .build();
         adapter= new FirestoreAdapterStudent(options,this);
         mEmptyStudentsRecView.setHasFixedSize(true);
-        //mEmptyStudentsRecView.addItemDecoration(new DividerItemDecoration(this,                DividerItemDecoration.HORIZONTAL));
-        //mEmptyStudentsRecView.addItemDecoration(new DividerItemDecoration(this,                DividerItemDecoration.VERTICAL));
-
-        //mEmptyStudentsRecView.setLayoutManager(new GridLayoutManager(SeeEmptyStudents.this,3));
-        //recyclerView.setAdapter(imageAdapter);
-
-        //mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         mEmptyStudentsRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         mEmptyStudentsRecView.addItemDecoration(new DividerItemDecoration(mEmptyStudentsRecView.getContext(), DividerItemDecoration.VERTICAL));
-        //mEmptyStudentsRecView.addItemDecoration(new DividerItemDecoration(mEmptyStudentsRecView.getContext(), DividerItemDecoration.HORIZONTAL));
         mEmptyStudentsRecView.setAdapter(adapter);
     }
 
@@ -81,7 +67,6 @@ public class SeeEmptyStudents extends AppCompatActivity implements FirestoreAdap
     public void onItemClick(DocumentSnapshot snapshot, int position) {
         Intent i=new Intent(getApplicationContext(),SeeStudentDetails.class);
         i.putExtra("Student_Id",snapshot.getId());
-        i.putExtra("Unique_Seat_Id",seatId);
         startActivity(i);
         Log.d("ITEM_CLICK","Clicked on item :" + position + "and the ID : " + snapshot.getId());
     }

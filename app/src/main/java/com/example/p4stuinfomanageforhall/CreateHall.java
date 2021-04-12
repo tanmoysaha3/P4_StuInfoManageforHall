@@ -61,7 +61,7 @@ public class CreateHall extends AppCompatActivity {
                         if (task.isSuccessful()){
                             DocumentSnapshot docSnap=task.getResult();
                             if (docSnap.exists()){
-                                Toast.makeText(CreateHall.this, "Seat exists", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateHall.this, "Hall exists", Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "Document exists!");
                             } else {
                                 DocumentReference documentReference=fStore.collection("Halls").document(hallId);

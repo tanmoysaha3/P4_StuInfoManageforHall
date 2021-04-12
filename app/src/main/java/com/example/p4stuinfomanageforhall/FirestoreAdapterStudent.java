@@ -25,15 +25,16 @@ public class FirestoreAdapterStudent extends FirestorePagingAdapter<ModelStudent
 
     @Override
     protected void onBindViewHolder(@NonNull FirestoreAdapterStudent.StudentModelHolder holder, int position, @NonNull ModelStudent model) {
-        holder.item_id.setText(model.getStudentID());
+        holder.item_id1.setText(model.getStudentID());
         holder.item_name.setText(model.getFull_Name());
         holder.item_details.setText(model.getAddress());
+        holder.item_id2.setText(model.getUnique_Seat_Id());
     }
 
     @NonNull
     @Override
     public FirestoreAdapterStudent.StudentModelHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_single,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_students,parent,false);
         return new FirestoreAdapterStudent.StudentModelHolder(view);
     }
 
@@ -61,14 +62,16 @@ public class FirestoreAdapterStudent extends FirestorePagingAdapter<ModelStudent
 
     public class StudentModelHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView item_id;
+        TextView item_id1;
         TextView item_name;
         TextView item_details;
+        TextView item_id2;
         public StudentModelHolder(@NonNull View itemView) {
             super(itemView);
-            item_id=itemView.findViewById(R.id.itemId);
+            item_id1=itemView.findViewById(R.id.itemId1);
             item_name=itemView.findViewById(R.id.itemName);
             item_details=itemView.findViewById(R.id.itemDetails);
+            item_id2=itemView.findViewById(R.id.itemId2);
 
             itemView.setOnClickListener(this);
         }

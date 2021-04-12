@@ -5,14 +5,16 @@ public class ModelStudent {
     String StudentID;
     String Full_Name;
     String Address;
+    String Unique_Seat_Id;
 
     ModelStudent(){
 
     }
-    ModelStudent(String studentID, String full_Name, String address){
+    ModelStudent(String studentID, String full_Name, String address, String unique_Seat_Id){
         this.StudentID=studentID;
         this.Full_Name=full_Name;
         this.Address=address;
+        this.Unique_Seat_Id=unique_Seat_Id;
     }
 
     public String getStudentID() {
@@ -37,5 +39,13 @@ public class ModelStudent {
 
     public void setAddress(String address) {
         Address = address;
+    }
+
+    public String getUnique_Seat_Id() {
+        return Unique_Seat_Id;
+    }
+
+    public void setUnique_Seat_Id(String unique_Seat_Id) {
+        Unique_Seat_Id = unique_Seat_Id;
     }
 }
